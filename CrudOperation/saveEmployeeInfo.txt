@@ -1,0 +1,55 @@
+
+package com.sasken.crudoperation;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+public class saveEmployeeInfo {
+	public static void main(String[] args) {
+		Configuration cfg = new Configuration();
+		cfg.configure("config.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+
+                // creating object for 1st employee and setting properties using @Data anotation
+		EmployeeInfo emp1 = new EmployeeInfo();
+		emp1.setFName("Raj");
+		emp1.setLName("Verma");
+		emp1.setEmail("raj.verma@imagine.com");
+		emp1.setAge(35);
+
+		// creating object for 2nd employee and setting properties using @Data anotation
+		EmployeeInfo emp2 = new EmployeeInfo();
+		emp2.setFName("Vaibhav");
+		emp2.setLName("Telang");
+		emp2.setEmail("v.telang@futureready.com");
+		emp2.setAge(29);
+
+		// creating object for 3rd employee and setting properties using @Data anotation
+		EmployeeInfo emp3 = new EmployeeInfo();
+		emp3.setFName("Ketan");
+		emp3.setLName("Bahadur");
+		emp3.setEmail("k.bahadur@infonext.com");
+		emp3.setAge(32);
+
+              // creating object for 4th employee and setting properties using @Data anotation
+		EmployeeInfo emp4 = new EmployeeInfo();
+		emp4.setFName("Abhishek");
+		emp4.setLName("Raj");
+		emp4.setEmail("abhi.raj@softsol.com");
+		emp4.setAge(30);
+
+		// Create object of transaction to begin the transaction
+		Transaction t = session.beginTransaction();
+		session.save(emp1); // save 1st employee information
+		session.save(emp2);// save 2nd employee information
+		session.save(emp3);// save 3rd employee information
+		session.save(emp4);// save 4th employee information
+
+		t.commit(); // Commit the trasaction
+		session.close();  //  close the session
+		factory.close();  // close the factory 
+	}
+}

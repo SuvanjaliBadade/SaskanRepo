@@ -1,0 +1,33 @@
+package com.sasken.crudoperation;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.Query;
+
+public class getEmployeeInfo {
+
+	public static void main(String[] args) {
+		Configuration cfg = new Configuration();
+		cfg.configure("config.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session session = factory.openSession();
+
+		Query query = session.createQuery("from EmployeeInfo");
+		List<EmployeeInfo> list = query.list();
+		for (EmployeeInfo e : list) {
+			System.out.println(e.getId());
+                        System.out.println(e.getFName());
+                        System.out.println(e.getLName());
+			System.out.println(e.getEmail();
+                        System.out.println(e.getAge());
+      		}
+
+		session.close();
+		factory.close();
+
+	}
+
+}
